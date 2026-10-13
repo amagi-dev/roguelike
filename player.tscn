@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ca1cn4h542dlw"]
+
+[ext_resource type="Script" uid="uid://d2w3ih34mkii2" path="res://scripts/PlayerController.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://c0qsocdf6ccwn" path="res://assets/2BitRogueSet.png" id="2_i3pqv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5e0q"]
+radius = 3.0
+
+[node name="Player" type="Area2D" unique_id=261641109]
+texture_filter = 1
+scale = Vector2(10, 10)
+script = ExtResource("1_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1435213798]
+texture_filter = 1
+texture = ExtResource("2_i3pqv")
+region_enabled = true
+region_rect = Rect2(24, 24, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1524806460]
+shape = SubResource("CircleShape2D_j5e0q")
