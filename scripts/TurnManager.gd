@@ -1,33 +1,37 @@
 extends Node2D
 
-@export var map: TileMapLayer
+class_name TurnManager
 
 var actors: Array[Actor] = []
 var current: Actor = null
 
 func _ready() -> void:
 	for actor in get_children():
+		actor.signal_next_actor.connect(signal_next_active)
 		actors.append(actor)
-		actor.signal_next_turn.connect(turn_ended) # next turn signal
+	pass
 
-		# begin with first actor
-		current = actors[0]
-		current.isActive = true
+	current = actors[0]
+	current.active()
 pass
 
-func turn_ended() -> void:
+func signal_next_active() -> void:
 	if current == null:
 		return
 
-	# next index and next actor
+	current.passive();
+
+	# switch to next actor
 	var current_index = actors.find(current)
 	var next_index = (current_index + 1) % actors.size()
 	current = actors[next_index]
 
-	current.isActive = true # next turn enable
-
-	print("Next turn:	", current.name)
+	current.active();
 pass
+
+
+
+
 
 
 func _process(_delta: float) -> void:

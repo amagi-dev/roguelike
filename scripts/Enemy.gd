@@ -1,51 +1,51 @@
 class_name Enemy
 extends Actor
 
-
+# INFO: ready
 func _ready() -> void:
 
 	# init positoin for layer
-	var cell = get_cell_from_position(global_position);
-	global_position = get_position_from_cell(cell);
+	var cell = map.get_cell_from_position(global_position);
+	global_position = map.get_position_from_cell(cell);
+
 pass
 
+func action() -> void:
 
-func _process(_delta: float) -> void:
-
-	if isActive == false:
+	if is_current_active == false:
 		return;
+	pass
 
+	if(is_current_active == true):
 
-	move_direction = Vector2i(0,1)
-	isMoving = true;
+		# move_direction = Vector2i(0,0)
+		move_direction = Vector2i(0,1)
 
-	if(isMoving == true):
+		is_current_active = false;
 
-		print("Enemy: isMoving	",isMoving)
-
-		#
-		# var delay = create_tween()
-		# delay.tween_interval(0.7)
-		# await delay.finished;
-
-		await get_tree().create_timer(0.7).timeout
 
 		# get current move direction from input
-		var c = get_cell_from_position(global_position);
+		var c = map.get_cell_from_position(global_position);
 		var target_cell = c + move_direction;
-		var pos = get_position_from_cell(target_cell);
+		var pos = map.get_position_from_cell(target_cell);
 
-		# reset move direction adn set isMoving to true
+		# reset move direction
 		move_direction = Vector2i.ZERO
-		isMoving = false;
 
 		# moveing in tween
 		var tween = create_tween()
 		tween.tween_property(self,"global_position",pos,0.15).set_trans(Tween.TRANS_SINE);
-		tween.finished.connect(event_finished);
-		await tween.finished;
+		tween.play()
 
-		print("Enemy: end")
-		signal_turn_finished.emit() # turn end
+		# if turn next
+		if(next_actor() == true):
+			is_current_active = true;
+		pass
 	pass
 pass
+
+
+
+
+func _process(_delta: float) -> void:
+	pass
