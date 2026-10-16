@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bl5q43pu41xe4"]
+
+[ext_resource type="Script" uid="uid://pujbuubdpj6u" path="res://scripts/item.gd" id="2_4ljsg"]
+[ext_resource type="PackedScene" uid="uid://dkooa6m5cuk3b" path="res://interfaces/sword.tscn" id="2_fhfel"]
+[ext_resource type="Texture2D" uid="uid://c0qsocdf6ccwn" path="res://assets/2BitRogueSet.png" id="2_oi6vk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in4m3"]
+atlas = ExtResource("2_oi6vk")
+region = Rect2(72, 24, 8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5e0q"]
+radius = 3.0
+
+[node name="Item" type="Area2D" unique_id=261641109]
+texture_filter = 1
+script = ExtResource("2_4ljsg")
+icon = ExtResource("2_fhfel")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1435213798]
+texture_filter = 1
+texture = SubResource("AtlasTexture_in4m3")
+region_rect = Rect2(24, 24, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1524806460]
+shape = SubResource("CircleShape2D_j5e0q")

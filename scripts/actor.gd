@@ -2,15 +2,14 @@ class_name Actor
 extends Area2D
 
 @export var map: TileMapLayer;
-
-
-@export var turn_manager: TurnManager
+@export var turn_manager: TurnManager;
+@export var interfaces: Control;
 
 var move_direction: Vector2i = Vector2i.ZERO;	# current move direction
 var is_current_active: bool = false;			# if current turn is turn
 var is_turn: bool = false;						# current active_turn or not
 
-
+var type = Type.NONE;
 
 var turn_point: int = 2;
 
@@ -38,6 +37,17 @@ enum State {
 
 	QUIT,				# quit current actor
 	}
+
+enum Type {
+	PLAYER,
+	ENEMY,
+	ITEM,
+
+	NONE,
+	}
+
+
+
 
 
 var state:State
@@ -168,8 +178,9 @@ pass
 
 
 # finished signal
-func tween_finished(tween,callback: Callable) -> void:
+func tween_finished(tween,callback: Callable) -> Tween:
 	tween.finished.connect(callback);
+	return tween.chain();
 pass
 
 

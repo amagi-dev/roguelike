@@ -7,6 +7,9 @@ var current: Actor = null
 
 func _ready() -> void:
 	for actor in get_children():
+		if(actor.type == Actor.Type.ITEM):
+			continue
+
 		actor.signal_next_actor.connect(signal_next_active)
 		actors.append(actor)
 	pass

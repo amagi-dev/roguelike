@@ -16,9 +16,8 @@ pass
 
 
 func action() -> void:
-
 	state = State.EXECUTE;
-	pass
+pass
 
 
 func execute() -> void:
@@ -35,26 +34,43 @@ func execute() -> void:
 		);
 
 		tween.play(); # play tween
-	elif (check_map_wall_from_direction() == false) && (check_entity_from_direction() != null):
-		# var entity = check_entity_from_direction();
+	elif(check_map_wall_from_direction() == false) && (check_entity_from_direction() != null):
 
-		state = State.CURRENT_EXECUTE;
+		# collision with entity
+		var entity = check_entity_from_direction();
 
-		var tween = create_tween()
-		tween = tween_attack(tween);
-		tween_finished(tween,
-		func():
-			next_turn();
-		);
+		match entity.type:
+			Actor.Type.ITEM:
+				state = State.CURRENT_EXECUTE;
+				interfaces.set_item(entity.icon);
+				entity.queue_free();
+				var tween = create_tween()
+				tween = tween_move(tween);
+				tween_finished(tween,
+				func():
+					next_turn();
+				);
 
-		tween.play(); # play tween
+				tween.play(); # play tween
+			pass
 
+			Actor.Type.ENEMY:
+				state = State.CURRENT_EXECUTE;
+
+				var tween = create_tween()
+				tween = tween_attack(tween);
+				tween = tween_finished(tween,
+				func():
+					next_turn();
+				);
+
+				tween.play(); # play tween
+			pass
+		pass
 	else:
 		state = State.IDLE;
 	pass
-
 pass
-
 
 func idle() -> void:
 	if Input.is_action_just_pressed("arrow_up"):
