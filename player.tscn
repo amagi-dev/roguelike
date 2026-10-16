@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ca1cn4h542dlw"]
 
-[ext_resource type="Script" uid="uid://d2w3ih34mkii2" path="res://scripts/PlayerController.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://d2w3ih34mkii2" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c0qsocdf6ccwn" path="res://assets/2BitRogueSet.png" id="2_i3pqv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5e0q"]

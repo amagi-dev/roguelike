@@ -1,0 +1,44 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="ページ-1" id="Z5we4yzt0hp_veaVsawI">
+    <mxGraphModel dx="1173" dy="914" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p0BE2E8nZ5yHSom0wBvC-12" edge="1" parent="1" source="p0BE2E8nZ5yHSom0wBvC-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" target="p0BE2E8nZ5yHSom0wBvC-14">
+          <mxGeometry relative="1" x="-0.6296" as="geometry">
+            <mxPoint x="180" y="640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p0BE2E8nZ5yHSom0wBvC-13" edge="1" parent="1" source="p0BE2E8nZ5yHSom0wBvC-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="p0BE2E8nZ5yHSom0wBvC-8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="530" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p0BE2E8nZ5yHSom0wBvC-5" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;fontSize=21;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;if turn point &amp;gt;= 0&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="240" x="60" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="p0BE2E8nZ5yHSom0wBvC-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fontSize=21;" value="next actor" vertex="1">
+          <mxGeometry height="80" width="170" x="580" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="p0BE2E8nZ5yHSom0wBvC-11" edge="1" parent="1" source="p0BE2E8nZ5yHSom0wBvC-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="p0BE2E8nZ5yHSom0wBvC-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p0BE2E8nZ5yHSom0wBvC-10" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.loop_limit;whiteSpace=wrap;fontSize=21;" value="turn loop" vertex="1">
+          <mxGeometry height="120" width="200" x="80" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p0BE2E8nZ5yHSom0wBvC-14" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.loop_limit;whiteSpace=wrap;direction=west;fontSize=20;" value="turn loop" vertex="1">
+          <mxGeometry height="120" width="200" x="80" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="p0BE2E8nZ5yHSom0wBvC-16" edge="1" parent="1" source="p0BE2E8nZ5yHSom0wBvC-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="p0BE2E8nZ5yHSom0wBvC-15" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="200" as="sourcePoint" />
+            <mxPoint x="190" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p0BE2E8nZ5yHSom0wBvC-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fontSize=21;" value="next turn" vertex="1">
+          <mxGeometry height="80" width="170" x="95" y="270" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

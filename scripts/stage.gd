@@ -4,22 +4,17 @@ class_name Stage
 func _ready() -> void:
 	pass
 
-
-
 func get_info_from_cell(object: Actor,cell: Vector2i) -> Dictionary:
 
 	var c = get_cell_from_position(object.global_position);
 	c += cell;
-
-
 
 	var source_id = get_cell_source_id(c)
 
 	if source_id == -1:
 		return { "exists": false }
 
-
-	var tile_data = get_cell_tile_data(cell)
+	var tile_data = get_cell_tile_data(c)
 
 	var is_wall = false
 
@@ -27,14 +22,12 @@ func get_info_from_cell(object: Actor,cell: Vector2i) -> Dictionary:
 		is_wall = tile_data.get_custom_data("is_wall")
 	pass
 
-
 	return {
 		"exists": true,
 		"is_wall": is_wall
 	}
+
 pass
-
-
 
 # Get global_position from cell
 func get_position_from_cell(cell: Vector2i) -> Vector2:

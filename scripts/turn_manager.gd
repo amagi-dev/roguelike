@@ -30,6 +30,18 @@ func signal_next_active() -> void:
 pass
 
 
+func get_entity_from_cell(cell) -> Actor:
+
+	for actor in get_children():
+		if(cell == actor.get_cell()):
+			return actor
+		pass
+	pass
+
+	return null
+pass
+
+
 
 
 
