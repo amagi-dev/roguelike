@@ -19,6 +19,9 @@ func action() -> void:
 	state = State.EXECUTE;
 pass
 
+func effect_exited() -> void:
+	next_turn();
+pass
 
 func execute() -> void:
 
@@ -42,9 +45,11 @@ func execute() -> void:
 		match entity.type:
 			Actor.Type.ITEM:
 				state = State.CURRENT_EXECUTE;
+
 				interfaces.set_item(entity.icon);
 				entity.queue_free();
-				var tween = create_tween()
+
+				var tween = create_tween();
 				tween = tween_move(tween);
 				tween_finished(tween,
 				func():
@@ -56,15 +61,13 @@ func execute() -> void:
 
 			Actor.Type.ENEMY:
 				state = State.CURRENT_EXECUTE;
+				entity.take_damage();
 
-				var tween = create_tween()
-				tween = tween_attack(tween);
-				tween = tween_finished(tween,
-				func():
-					next_turn();
-				);
-
-				tween.play(); # play tween
+				var e = damage.instantiate();
+				add_child(e);
+				e.global_position = entity.global_position;
+				e.tree_exited.connect(effect_exited);
+				e.play();
 			pass
 		pass
 	else:
@@ -73,19 +76,19 @@ func execute() -> void:
 pass
 
 func idle() -> void:
-	if Input.is_action_just_pressed("arrow_up"):
+	if Input.is_action_pressed("arrow_up"):
 		move_direction = Vector2i(0,-1)
 		state = State.ACTION;
 
-	elif Input.is_action_just_pressed("arrow_down"):
+	elif Input.is_action_pressed("arrow_down"):
 		move_direction = Vector2i(0,1)
 		state = State.ACTION;
 
-	elif Input.is_action_just_pressed("arrow_left"):
+	elif Input.is_action_pressed("arrow_left"):
 		move_direction = Vector2i(-1,0)
 		state = State.ACTION;
 
-	elif Input.is_action_just_pressed("arrow_right"):
+	elif Input.is_action_pressed("arrow_right"):
 		move_direction = Vector2i(1,0)
 		state = State.ACTION;
 	pass

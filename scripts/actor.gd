@@ -1,9 +1,11 @@
-class_name Actor
 extends Area2D
+class_name Actor
 
 @export var map: TileMapLayer;
 @export var turn_manager: TurnManager;
 @export var interfaces: Control;
+
+@export var damage:PackedScene = null;
 
 var move_direction: Vector2i = Vector2i.ZERO;	# current move direction
 var is_current_active: bool = false;			# if current turn is turn
@@ -12,7 +14,7 @@ var is_turn: bool = false;						# current active_turn or not
 var type = Type.NONE;
 
 var turn_point: int = 2;
-
+var heath:int = 3;
 
 # Check
 
@@ -58,6 +60,7 @@ func _ready() -> void:
 	# init position for layer
 	var cell = map.get_cell_from_position(global_position);
 	global_position = map.get_position_from_cell(cell);
+
 
 	signal_passive.connect(passive);
 	signal_active.connect(active);
@@ -147,7 +150,7 @@ func tween_move(tween) -> Tween:
 
 	var dest = get_position_move_direction();
 
-	tween.tween_property(self,"global_position",dest,0.30).set_trans(Tween.TRANS_SINE);
+	tween.tween_property(self,"global_position",dest,0.2).set_trans(Tween.TRANS_SINE);
 	return tween.chain();
 pass
 
@@ -158,7 +161,7 @@ pass
 
 # attack
 ## NOTE: debug only
-func tween_attack(tween) -> Tween:
+func tween_punch(tween) -> Tween:
 
 	var original_pos = global_position;
 
@@ -176,6 +179,22 @@ func tween_attack(tween) -> Tween:
 	return tween.chain();
 pass
 
+#
+# func tween_weapon() -> Tween:
+#
+#
+# 	# get current move direction from input
+# 	var c = map.get_cell_from_position(global_position);
+# 	var pos = map.get_position_from_cell(c);
+#
+# 	# half map size
+# 	var size:Vector2i = Vector2i(Vector2(map.tile_set.tile_size) / float(2));
+# 	pos = pos + Vector2(size * move_direction);
+#
+#
+# pass
+#
+#
 
 # finished signal
 func tween_finished(tween,callback: Callable) -> Tween:
@@ -189,6 +208,15 @@ func finished_move() -> void:
 pass
 
 
+# Damage
+func take_damage() -> void:
+	heath += -1;
+
+	if(heath <= 0):
+		turn_manager.set_delete(self);
+		queue_free()   # メモリ（シーンツリー）から完全に削除
+	pass
+pass
 
 # INFO: base function
 

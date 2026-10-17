@@ -32,7 +32,6 @@ func signal_next_active() -> void:
 	current.active();
 pass
 
-
 func get_entity_from_cell(cell) -> Actor:
 
 	for actor in get_children():
@@ -44,9 +43,14 @@ func get_entity_from_cell(cell) -> Actor:
 	return null
 pass
 
+func set_delete(object:Actor) -> void:
 
-
-
+	for actor in actors:
+		if(object == actor):
+			actors.erase(object)  # 配列からこのオブジェクトを削除
+		pass
+	pass
+pass
 
 
 func _process(_delta: float) -> void:
